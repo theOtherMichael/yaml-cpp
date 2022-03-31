@@ -20,19 +20,17 @@ class ostream_wrapper;
 namespace YAML {
 class Binary;
 
-struct StringFormat {
-  enum value { Plain, SingleQuoted, DoubleQuoted, Literal };
-};
+enum class StringFormat { Plain, SingleQuoted, DoubleQuoted, Literal };
 
 struct StringEscaping {
   enum value { None, NonAscii, JSON };
 };
 
 namespace Utils {
-StringFormat::value ComputeStringFormat(const std::string& str,
-                                        EMITTER_MANIP strFormat,
-                                        FlowType::value flowType,
-                                        bool escapeNonAscii);
+StringFormat ComputeStringFormat(const std::string& str,
+                                 EMITTER_MANIP strFormat,
+                                 FlowType flowType,
+                                 bool escapeNonAscii);
 
 bool WriteSingleQuotedString(ostream_wrapper& out, const std::string& str);
 bool WriteDoubleQuotedString(ostream_wrapper& out, const std::string& str,
